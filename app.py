@@ -2,7 +2,7 @@ import os
 import logging
 from flask import Flask, request
 from aiogram import Bot, Dispatcher, types
-from aiogram.types import ParseMode
+from aiogram.utils import ParseMode
 from aiogram.utils.executor import start_webhook
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
