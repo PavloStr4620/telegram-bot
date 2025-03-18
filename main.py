@@ -18,28 +18,28 @@ last_data = None
 creating_apiary = False  # блокування кнопок під час створення пасіки
 
 
-@bot.message_handler(commands=['start'])
-def send_welcome(message):
-    print("/start запустилося")
-    chat_id = message.chat.id
-    markup = types.InlineKeyboardMarkup()
+# @bot.message_handler(commands=['start'])
+# def send_welcome(message):
+#     print("/start запустилося")
+#     chat_id = message.chat.id
+#     markup = types.InlineKeyboardMarkup()
 
-    if get_token(chat_id) is None:
-        markup.add(types.InlineKeyboardButton('Вхід', callback_data='login'))
-        markup.add(types.InlineKeyboardButton(
-            'Реєстрація', callback_data='registration'))
+#     if get_token(chat_id) is None:
+#         markup.add(types.InlineKeyboardButton('Вхід', callback_data='login'))
+#         markup.add(types.InlineKeyboardButton(
+#             'Реєстрація', callback_data='registration'))
 
-    else:
-        if check_beehive_exists():
-            markup.add(types.InlineKeyboardButton(
-                'Переглянути пасіку', callback_data='view_apiary'))
-            markup.add(types.InlineKeyboardButton(
-                'Створити пасіку', callback_data='create_apiary'))
-        else:
-            markup.add(types.InlineKeyboardButton(
-                'Створити пасіку', callback_data='create_apiary'))
+#     else:
+#         if check_beehive_exists():
+#             markup.add(types.InlineKeyboardButton(
+#                 'Переглянути пасіку', callback_data='view_apiary'))
+#             markup.add(types.InlineKeyboardButton(
+#                 'Створити пасіку', callback_data='create_apiary'))
+#         else:
+#             markup.add(types.InlineKeyboardButton(
+#                 'Створити пасіку', callback_data='create_apiary'))
 
-    bot.send_message(chat_id, "Ласкаво просимо!", reply_markup=markup)
+#     bot.send_message(chat_id, "Ласкаво просимо!", reply_markup=markup)
 
 
 @bot.callback_query_handler(
