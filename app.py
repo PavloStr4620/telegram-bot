@@ -20,9 +20,8 @@ def webhook():
     return "!", 200
 
 @bot.message_handler(commands=['qwe'])
-def start_command(message):
-    print(f"Start command received from {message.from_user.username}")
-    bot.reply_to(message, "Hello, welcome to the bot!")
+def handle_qwe(message):
+    bot.reply_to(message, "Ваша команда була отримана!")
 
 
 @app.route('/')
