@@ -20,6 +20,7 @@ creating_apiary = False  # блокування кнопок під час ст�
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
+    print("/start запустилося")
     chat_id = message.chat.id
     markup = types.InlineKeyboardMarkup()
 
