@@ -3,7 +3,7 @@ import logging
 from flask import Flask, request
 from aiogram import Bot, Dispatcher, types
 from aiogram.types import Update
-from aiogram.utils import web
+from aiogram.utils import executor
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 WEBHOOK = os.getenv("WEBHOOK_URL")
@@ -42,11 +42,5 @@ if __name__ == '__main__':
     bot.remove_webhook()
     bot.set_webhook(url=WEBHOOK_URL)
 
-    # Запуск Flask-сервера і aiogram webhook
-    web.start_webhook(
-        dispatcher=dp,
-        webhook_path=f'/{BOT_TOKEN}',
-        on_start=on_start,
-        host="0.0.0.0",
-        port=5000,
-    )
+    # Запуск Flask-сервера
+    app.run(host="0.0.0.0", port=5000)
