@@ -11,7 +11,9 @@ from jwt_token import *
 from login import process_login
 from registration import process_registration
 from bot_config import BOT_TOKEN
+from app import keep_alive
 
+keep_alive()
 SERVER_URL = "https://smart-beehive-server.onrender.com/getdata"
 SERVER_CREATE_APIARY = "https://smart-beehive-server.onrender.com/api/"
 
