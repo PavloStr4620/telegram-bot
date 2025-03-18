@@ -1,49 +1,28 @@
-import os
 import logging
-from flask import Flask, request
 from aiogram import Bot, Dispatcher, types
-from aiogram.types import Update
+from aiogram.types import ParseMode
+from aiogram.utils import executor
+import os
 
-BOT_TOKEN = os.environ.get("BOT_TOKEN")
-WEBHOOK = os.getenv("WEBHOOK_URL")
-WEBHOOK_URL = f"{WEBHOOK}/{BOT_TOKEN}"
+BOT_TOKEN = os.getenv('BOT_TOKEN')
 
 logging.basicConfig(level=logging.INFO)
 
-# Ініціалізація бота
+# Ініціалізація бота та диспетчера
 bot = Bot(token=BOT_TOKEN)
-
-# Ініціалізація диспетчера
 dp = Dispatcher(bot)
 
-app = Flask(__name__)
+# Обробник команди /start
+@dp.message_handler(commands=['start'])
+async def send_welcome(message: types.Message):
+    await message.reply("Привіт! Це тестовий бот на aiogram!")
 
-# Вебхук
-async def on_start():
-    await bot.set_webhook(WEBHOOK_URL)
+# Обробник всіх текстових повідомлень
+@dp.message_handler()
+async def echo(message: types.Message):
+    await message.answer(f"Ти написав: {message.text}")
 
-# Обробка команд
-@dp.message_handler(commands=['qwe'])
-async def handle_qwe(message: types.Message):
-    await message.reply("Ваша команда була отримана!")
-
-# Обробка запитів на вебхук
-@app.route('/' + BOT_TOKEN, methods=['POST'])
-def webhook():
-    json_str = request.get_data().decode('UTF-8')
-    update = Update.parse_raw(json_str)
-    dp.process_update(update)
-    return "!", 200
-
-# Домашня сторінка
-@app.route('/')
-def home():
-    return "Bot is running!", 200
-
+# Основна функція для запуску бота
 if __name__ == '__main__':
-    # Налаштування вебхука перед запуском
-    bot.remove_webhook()
-    bot.set_webhook(url=WEBHOOK_URL)
-
-    # Запуск Flask-сервера
-    app.run(host="0.0.0.0", port=5000)
+    from aiogram import executor
+    executor.start_polling(dp, skip_updates=True)
