@@ -10,8 +10,12 @@ WEBHOOK_URL = f"{WEBHOOK}/{BOT_TOKEN}"
 
 logging.basicConfig(level=logging.INFO)
 
+# Ініціалізація бота
 bot = Bot(token=BOT_TOKEN)
-dp = Dispatcher.from_types(Bot, types.Message)  # Правильний спосіб ініціалізації
+
+# Ініціалізація диспетчера
+dp = Dispatcher(bot)
+
 app = Flask(__name__)
 
 # Вебхук
