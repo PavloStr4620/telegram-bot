@@ -19,6 +19,12 @@ def webhook():
     bot.process_new_updates([update])
     return "!", 200
 
+@bot.message_handler(commands=['start'])
+def start_command(message):
+    print(f"Start command received from {message.from_user.username}")
+    bot.reply_to(message, "Hello, welcome to the bot!")
+
+
 @app.route('/')
 def home():
     return "Bot is running!", 200
