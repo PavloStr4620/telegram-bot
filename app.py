@@ -1,8 +1,7 @@
-import os
+фimport os
 import logging
 from flask import Flask, request
 from aiogram import Bot, Dispatcher, types
-from aiogram.utils import ParseMode
 from aiogram.utils.executor import start_webhook
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
@@ -22,6 +21,7 @@ async def on_start():
 # Обробка команд
 @dp.message_handler(commands=['qwe'])
 async def handle_qwe(message: types.Message):
+    # Використовуємо форматування без ParseMode
     await message.reply("Ваша команда була отримана!")
 
 # Обробка запитів на вебхук
