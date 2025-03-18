@@ -3,7 +3,6 @@ import logging
 from flask import Flask, request
 from aiogram import Bot, Dispatcher, types
 from aiogram.types import Update
-from aiogram.utils import executor
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 WEBHOOK = os.getenv("WEBHOOK_URL")
