@@ -1,6 +1,6 @@
 from aiogram import Bot, Dispatcher, executor, types
 import os
-from main import keep_alive
+from app import keep_alive
 keep_alive()
 
 bot = Bot(token=os.environ.get('BOT_TOKEN'))
