@@ -2,7 +2,7 @@ import logging
 import os
 
 from aiogram import Bot, Dispatcher, types
-from aiogram.contrib.middlewares.logging import LoggingMiddleware
+from aiogram.middlewares.logging import LoggingMiddleware # Виправлено імпорт
 from aiogram.utils import executor
 
 # Отримання токена бота з змінної середовища
