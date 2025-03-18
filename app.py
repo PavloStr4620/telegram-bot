@@ -1,5 +1,7 @@
+import os
 import telebot
 from flask import Flask, request
+
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 WEBHOOK = os.getenv("WEBHOOK_URL")
