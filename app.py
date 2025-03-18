@@ -1,11 +1,15 @@
-import asyncio
-from aiogram import Bot, Dispatcher
-from main import dp, bot  # Імпорт dp та bot з main.py
-import os
+from flask import Flask,render_template
+from threading import Thread
 
-async def main():
-    print("Бот запущено...")
-    await dp.start_polling(bot)
+app = Flask(__name__)
 
-if __name__ == "__main__":
-    asyncio.run(main())
+@app.route('/')
+def index():
+    return "Alive"
+
+def run():
+  app.run(host='0.0.0.0',port=8080)
+
+def keep_alive():  
+    t = Thread(target=run)
+    t.start()
