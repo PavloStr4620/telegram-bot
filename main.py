@@ -5,17 +5,18 @@ from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters import CommandStart
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 import asyncio
+import os
 
 from apiary import create_apiary, check_beehive_exists, view_apiary
 from jwt_token import *
 from login import process_login
 from registration import process_registration
-from bot_config import BOT_TOKEN
 from app import keep_alive
 
 keep_alive()
-SERVER_URL = "https://smart-beehive-server.onrender.com/getdata"
-SERVER_CREATE_APIARY = "https://smart-beehive-server.onrender.com/api/"
+# SERVER_URL = "https://smart-beehive-server.onrender.com/getdata"
+# SERVER_CREATE_APIARY = "https://smart-beehive-server.onrender.com/api/"
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
 
 last_data = None
 creating_apiary = False  # блокування кнопок під час створення пасіки
