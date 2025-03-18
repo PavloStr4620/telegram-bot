@@ -1,5 +1,6 @@
 import logging
 from aiogram import Bot, Dispatcher, types
+from aiogram.contrib.middlewares.logging import LoggingMiddleware
 import os
 
 BOT_TOKEN = os.getenv('BOT_TOKEN')
@@ -9,6 +10,9 @@ logging.basicConfig(level=logging.INFO)
 # Ініціалізація бота та диспетчера
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(bot)
+
+# Додати middleware для логування
+dp.middleware.setup(LoggingMiddleware())
 
 # Обробник команди /start
 @dp.message_handler(commands=['start'])
